@@ -14,4 +14,5 @@ Before proceeding, ensure you have the following installed:
 To start the CARLA remote client, open a terminal and run the following command:
 
 ```bash
+chmod +x run_carla.sh
 ./run_carla.sh --host <SERVER_IP> --port <PORT_NUMBER>
