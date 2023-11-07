@@ -1,4 +1,17 @@
-# CARLARemoteClientSetup
+# CARLA Remote Client Setup
 
-# Developed to allow Mac Users to easily remote into a remote CARLA server.
-# To run, simply run: ./run_carla.sh --host <SERVER_IP> --port <PORT_NUMBER>
+This repository contains a setup designed to help Mac users easily connect to a remote CARLA server.
+
+## Prerequisites
+
+Before proceeding, ensure you have the following installed:
+
+- Docker
+- XQuartz (for X11 forwarding)
+
+## Running the Client
+
+To start the CARLA remote client, open a terminal and run the following command:
+
+```bash
+./run_carla.sh --host <SERVER_IP> --port <PORT_NUMBER>
