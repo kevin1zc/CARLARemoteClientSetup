@@ -1,5 +1,7 @@
 # Use the base image with Carla installed
-FROM carlasim/carla:0.9.11
+FROM carlasim/carla:0.9.14
+
+COPY to_be_copied .
 
 # Set the environment variables
 ENV LANG=C.UTF-8 \
@@ -40,15 +42,16 @@ WORKDIR /home/carla/PythonAPI/carla
 # Copy the requirements file and install Python dependencies
 RUN pip3 install -r requirements.txt
 RUN pip3 install pygame
+RUN PIP3 install dist/carla-0.9.14-cp38-cp38-linux_x86_64
 
 # Add the egg path to PYTHONPATH
-ENV PYTHONPATH "${PYTHONPATH}:/home/carla/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg"
+# ENV PYTHONPATH "${PYTHONPATH}:/home/carla/PythonAPI/carla/dist/carla-0.9.14-py3.7-linux-x86_64.egg"
 
 # Set the working directory to the examples
-WORKDIR /home/carla/PythonAPI/examples
+WORKDIR /home/carla-client
 
 # Set the entrypoint to run the manual_control.py script
-ENTRYPOINT ["python3", "manual_control.py"]
+ENTRYPOINT ["python3", "manual_control_steeringwheel.py"]
 
 # Set the default HOST_IP and PORT as environment variables
 # Users can override these at runtime if needed
