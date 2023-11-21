@@ -52,7 +52,6 @@ echo "Running the Docker container..."
 docker run -it -u root \
   -e DISPLAY="${IP}:0" \
   -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-  --name "carla-container" \
   --privileged \
   carla-remote-connection \
   --host "$HOST" \
