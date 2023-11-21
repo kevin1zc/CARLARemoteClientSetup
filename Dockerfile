@@ -55,16 +55,16 @@ RUN pip3 install pygame Cython evdev
 RUN pip3 install imageio
 
 # Add the egg path to PYTHONPATH
-ENV PYTHONPATH "${PYTHONPATH}:/home/carla/PythonAPI/carla/dist/carla-0.9.14-py3.7-linux-x86_64.egg"
-#ENV PYTHONPATH "${PYTHONPATH}:/home/carla/dist/carla-0.9.14-py3.8-linux-x86_64.egg"
+# ENV PYTHONPATH "${PYTHONPATH}:/home/carla/PythonAPI/carla/dist/carla-0.9.14-py3.7-linux-x86_64.egg"
+ENV PYTHONPATH "${PYTHONPATH}:/home/carla/dist/carla-0.9.14-py3.7-linux-x86_64.egg"
 
 # Set the working directory to the examples
-#WORKDIR /home/carla/carla-client
- WORKDIR /home/carla/PythonAPI/examples
+WORKDIR /home/carla/carla-client
+# WORKDIR /home/carla/PythonAPI/examples
 
 # Set the entrypoint to run the manual_control.py script
-#ENTRYPOINT ["python3", "manual_control_steeringwheel.py"]
- ENTRYPOINT ["python3", "manual_control.py"]
+ENTRYPOINT ["python3", "manual_control_steeringwheel.py"]
+# ENTRYPOINT ["python3", "manual_control.py"]
 
 # Set the default HOST_IP and PORT as environment variables
 # Users can override these at runtime if needed
