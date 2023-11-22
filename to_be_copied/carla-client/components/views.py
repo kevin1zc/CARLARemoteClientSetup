@@ -3,7 +3,7 @@ from carla import ColorConverter as cc
 import weakref
 import numpy as np
 import pygame
-import imageio.v3 as iio
+import imageio as iio
 import multiprocessing
 from multiprocessing import shared_memory
 import ctypes

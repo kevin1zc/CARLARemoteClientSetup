@@ -17,10 +17,10 @@ RUN rm /etc/apt/sources.list.d/nvidia-ml.list
 
 # Install the required packages
 RUN apt-get update && apt-get install -y \
-    python3-pip \
     libc6 \
     libjpeg-turbo8 \
     libtiff-dev \
+    libgeos-dev \
     language-pack-en \
     libsdl2-dev \
     libsdl2-image-dev \
@@ -29,9 +29,10 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libportmidi-dev \
     libjpeg-dev \
-    python3-setuptools \
-    python3-dev \
-    python3-numpy \
+    python3.8 \
+    python3-pip \
+    python3.8-dev \
+    python3.8-distutils \
     vim \
     fontconfig \
     mesa-utils \
@@ -48,24 +49,21 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /home/carla/PythonAPI/carla
 
 # Copy the requirements file and install Python dependencies
-RUN pip3 install -U pip
-RUN pip3 install -r requirements.txt
-RUN pip3 install pygame Cython evdev
-# RUN pip3 install av --no-binary av
-RUN pip3 install imageio
+RUN python3.8 -m pip install -U pip
+RUN python3.8 -m pip install -U pip
+RUN python3.8 -m pip install -r requirements.txt
+RUN python3.8 -m pip install pygame Cython evdev
+RUN python3.8 -m pip install imageio
 
 # Add the egg path to PYTHONPATH
-# ENV PYTHONPATH "${PYTHONPATH}:/home/carla/PythonAPI/carla/dist/carla-0.9.14-py3.7-linux-x86_64.egg"
-ENV PYTHONPATH "${PYTHONPATH}:/home/carla/dist/carla-0.9.14-py3.7-linux-x86_64.egg"
+ENV PYTHONPATH "${PYTHONPATH}:/home/carla/dist/carla-0.9.14-py3.6-linux-x86_64.egg"
 
 # Set the working directory to the examples
 WORKDIR /home/carla/carla-client
-# WORKDIR /home/carla/PythonAPI/examples
 
 # Set the entrypoint to run the manual_control.py script
-ENTRYPOINT ["python3", "manual_control_steeringwheel.py"]
-# ENTRYPOINT ["python3", "manual_control.py"]
+ENTRYPOINT ["python3.8", "manual_control_steeringwheel.py"]
 
 # Set the default HOST_IP and PORT as environment variables
 # Users can override these at runtime if needed
-CMD ["--host", "127.0.0.1", "--port", "2000"]
+#CMD ["--host", "127.0.0.1", "--port", "2000"]
